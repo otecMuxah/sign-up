@@ -90,10 +90,17 @@ describe('SignUpFacadeService', () => {
     describe('confirm password control', () => {
       it('should has required validator', () => {
         const control: AbstractControl | null = form.get('confirmPassword');
-
         control?.setValue(null);
-
         expect(control?.hasError('required')).toBeTruthy();
+      });
+      it('should has password match validator', () => {
+        const password: AbstractControl | null = form.get('password');
+        const confirmPassword: AbstractControl | null =
+          form.get('confirmPassword');
+
+        password?.setValue('123');
+        confirmPassword?.setValue('123');
+        expect(form?.hasError('passwordMatch')).toBeTruthy();
       });
     });
   });

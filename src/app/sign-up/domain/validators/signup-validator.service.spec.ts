@@ -135,15 +135,15 @@ describe('Signup Validator', () => {
     it('should return null if passwords match', () => {
       const form = new FormGroup({
         password: new FormControl('bob777'),
-        confirmPassword: new FormControl('bob777'),
+        confirmPassword: new FormControl('bob778'),
       });
       expect(passwordsMatchValidator(form)).toBeNull();
     });
 
-    it('should return null if passwords not match', () => {
+    it('should return correct object if passwords not match', () => {
       const form = new FormGroup({
         password: new FormControl('bob777'),
-        confirmPassword: new FormControl('bob778'),
+        confirmPassword: new FormControl('bob777'),
       });
 
       expect(passwordsMatchValidator(form)).toEqual({

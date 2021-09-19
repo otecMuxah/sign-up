@@ -99,10 +99,10 @@ export class SignupValidator {
       }
 
       const passwordsMatch = new RegExp(password).test(confirmPassword);
-      if (!passwordsMatch) {
+      if (passwordsMatch) {
         confirmPassControl?.setErrors({ passwordMatch: true });
       }
-      return passwordsMatch ? null : { passwordMatch: true };
+      return passwordsMatch ? { passwordMatch: true } : null;
     };
   }
 }
