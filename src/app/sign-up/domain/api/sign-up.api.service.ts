@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../models/user.model';
+import { environment } from '../../../../environments/environment';
 
-const url = 'https://demo-api.now.sh/users';
+const url = `${environment.baseUrl}/users`;
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +12,11 @@ const url = 'https://demo-api.now.sh/users';
 export class SignUpApiService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<UserModel[]> {
+  public getUsers(): Observable<UserModel[]> {
     return this.http.get<UserModel[]>(url);
   }
 
-  postUser(user: UserModel): Observable<UserModel> {
+  public postUser(user: UserModel): Observable<UserModel> {
     return this.http.post<UserModel>(url, user);
   }
 }
