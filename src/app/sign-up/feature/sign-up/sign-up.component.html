@@ -1,0 +1,63 @@
+<mat-progress-bar mode="indeterminate" *ngIf="signUpFacade.emailValidating | async"></mat-progress-bar>
+<h1>Sign up</h1>
+
+<form [formGroup]="signUpFacade.signUpForm" (ngSubmit)="signUpFacade.submit()">
+  <mat-form-field appearance="outline">
+    <mat-label>First name</mat-label>
+    <input matInput placeholder="Ex. John" formControlName="firstName">
+    <mat-error *ngIf="signUpFacade.signUpForm.get('firstName')?.hasError('required')">
+      First name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Last name</mat-label>
+    <input matInput placeholder="Ex. Doe" formControlName="lastName">
+    <mat-error *ngIf="signUpFacade.signUpForm.get('lastName')?.hasError('required')">
+      Last name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Ex. johndoe@email.com" formControlName="email">
+    <mat-error *ngIf="signUpFacade.signUpForm.get('email')?.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="signUpFacade.signUpForm.get('email')?.hasError('emailFormat')">
+      Invalid email <strong>format</strong>
+    </mat-error>
+    <mat-error *ngIf="signUpFacade.signUpForm.get('email')?.hasError('uniqueEmail')">
+      This email is already <strong>taken</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="password-field">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password">
+    <mat-error *ngIf="signUpFacade.signUpForm.get('password')?.hasError('required')">
+      Password is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="signUpFacade.signUpForm.get('password')?.hasError('minlength')">
+      Password is shorter than <strong>8 symbols</strong>
+    </mat-error>
+    <mat-error *ngIf="signUpFacade.signUpForm.get('password')?.hasError('letterCase')">
+      Password should contain <strong>upper and lower case</strong> symbols
+    </mat-error>
+    <mat-error *ngIf="signUpFacade.signUpForm.get('password')?.hasError('passwordIncludePersonal')">
+      Password should not contain <strong>first or last name</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Confirm password</mat-label>
+    <input matInput formControlName="confirmPassword">
+    <mat-error *ngIf="signUpFacade.signUpForm.get('confirmPassword')?.hasError('required')">
+      Confirm password is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="signUpFacade.signUpForm.get('confirmPassword')?.hasError('passwordMatch')">
+      Passwords should be <strong>the same</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit"
+          [disabled]="signUpFacade.signUpForm.untouched || signUpFacade.signUpForm.pending || signUpFacade.signUpForm.invalid">
+    Submit
+  </button>
+</form>

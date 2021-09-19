@@ -1,0 +1,25 @@
+form {
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+}
+
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  ::ng-deep {
+    .password-field .mat-form-field-subscript-wrapper {
+      position: static;
+      width: 100%;
+    }
+  }
+}
+mat-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
