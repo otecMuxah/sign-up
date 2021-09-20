@@ -3,6 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { SignUpFacadeService } from './sign-up.facade.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { SignUpApiService } from './api/sign-up.api.service';
+import { of } from 'rxjs';
 
 describe('SignUpFacadeService', () => {
   let service: SignUpFacadeService;
@@ -106,6 +108,24 @@ describe('SignUpFacadeService', () => {
         password?.setValue('123');
         confirmPassword?.setValue('123');
         expect(form?.hasError('passwordMatch')).toBeTruthy();
+      });
+    });
+    describe('form submit', () => {
+      it('should submit form to api', () => {
+        const fakeUser = {
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'aaa@bbb.ccc',
+          password: '123',
+          confirmPassword: '123',
+        };
+        form.setValue(fakeUser);
+        const apiService = TestBed.inject(SignUpApiService);
+        const httpSpy = spyOn(apiService, 'postUser').and.returnValue(
+          of(fakeUser)
+        );
+        service.submit();
+        expect(httpSpy).toHaveBeenCalled();
       });
     });
   });
