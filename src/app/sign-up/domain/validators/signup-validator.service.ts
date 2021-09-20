@@ -17,7 +17,7 @@ const LOWER_CASE_PATTERN: RegExp = /[a-z]+/;
   providedIn: 'root',
 })
 export class SignupValidator {
-  emailValidating = new BehaviorSubject(false); // to trigger CD in form component, right after async validation finished
+  emailValidating = new BehaviorSubject(false);
   constructor(private signUpApiService: SignUpApiService) {}
 
   public checkUniqueEmail(): AsyncValidatorFn {

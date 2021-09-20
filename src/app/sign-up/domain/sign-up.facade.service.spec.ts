@@ -35,6 +35,7 @@ describe('SignUpFacadeService', () => {
         expect(control?.hasError('required')).toBeTruthy();
       });
     });
+
     describe('last name control', () => {
       it('should has required validator', () => {
         const control: AbstractControl | null = form.get('firstName');
@@ -44,6 +45,7 @@ describe('SignUpFacadeService', () => {
         expect(control?.hasError('required')).toBeTruthy();
       });
     });
+
     describe('email control', () => {
       let control: AbstractControl | null;
       beforeEach(() => {
@@ -64,6 +66,7 @@ describe('SignUpFacadeService', () => {
         expect(control?.status).toBe('PENDING');
       });
     });
+
     describe('password control', () => {
       it('should has required validator', () => {
         const control: AbstractControl | null = form.get('password');
@@ -87,12 +90,14 @@ describe('SignUpFacadeService', () => {
         expect(password?.hasError('passwordIncludePersonal')).toBeTruthy();
       });
     });
+
     describe('confirm password control', () => {
       it('should has required validator', () => {
         const control: AbstractControl | null = form.get('confirmPassword');
         control?.setValue(null);
         expect(control?.hasError('required')).toBeTruthy();
       });
+
       it('should has password match validator', () => {
         const password: AbstractControl | null = form.get('password');
         const confirmPassword: AbstractControl | null =

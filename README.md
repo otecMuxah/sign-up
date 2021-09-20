@@ -38,3 +38,7 @@ Implemented tasks
 - Karma
 - Domain Driven Design architecture
 - SCAM (single component angular module)
+
+## Extras
+- async validator for checking unique email
+- confirm password with password match validation
